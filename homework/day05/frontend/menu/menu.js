@@ -5,15 +5,15 @@ const getCoffee = () => {
 
   // 2. 받은 데이터로 createMenuCard 함수를 이용해 메뉴 카드를 모두 만들어주세요.
   createMenuCard({ name: '아메리카노', kcal: 5 })
-  createMenuCard({ name: '카페라떼', kcal: 5 })
-  createMenuCard({ name: '콜드브루', kcal: 5 })
-  createMenuCard({ name: '카페모카', kcal: 5 })
-  createMenuCard({ name: '돌체라떼', kcal: 5 })
-  createMenuCard({ name: '카라멜라뗴', kcal: 5 })
-  createMenuCard({ name: '바닐라라떼', kcal: 5 })
-  createMenuCard({ name: '에스프레소', kcal: 5 })
+  createMenuCard({ name: '카페라떼', kcal: 10 })
+  createMenuCard({ name: '콜드브루', kcal: 15 })
+  createMenuCard({ name: '카페모카', kcal: 50 })
+  createMenuCard({ name: '돌체라떼', kcal: 500 })
+  createMenuCard({ name: '카라멜라뗴', kcal: 200 })
+  createMenuCard({ name: '바닐라라떼', kcal: 20 })
+  createMenuCard({ name: '에스프레소', kcal: 1 })
   createMenuCard({ name: '디카페인', kcal: 5 })
-  createMenuCard({ name: '오트라떼', kcal: 5 })
+  createMenuCard({ name: '오트라떼', kcal: 300 })
 }
 
 const createMenuCard = (data) => {
