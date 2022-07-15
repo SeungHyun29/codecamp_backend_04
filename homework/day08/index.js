@@ -41,18 +41,6 @@ app.post('/tokens/phone', async (req,res) => {
 
 });
 
-// app.patch('/tokens/phone', async (req, res) => {
-//   const result1 = await Board.findOne({token: req.body.token})
-//     if (result1 !== null) {
-//       res.send(false)
-//   await Board.findOneAndUpdate({token: req.body.token},{isAuth: true})
-//   } else {
-//     res.send(true)
-
-  
-//   }
-// })
-
 app.patch('/tokens/phone', async (req, res) => {
   const result1 = await Board.findOne({phone: req.body.phone})
   const result2 = await Board.findOne({token: req.body.token})
@@ -89,12 +77,6 @@ app.post('/boards', async (req,res)=> {
 
 
   app.get('/boards', async (req, res) => {
-    // 1. 데이터를 조회하는 로직 => DB에 접속해서 데이터 꺼내오기
-    // const result = [
-    //   {number: 1, writer: "철수", title:"몽골의 역사", contents:"내용1"},
-    //   {number: 2, writer: "영희", title:"한국의 역사", contents:"내용2"},
-    //   {number: 3, writer: "훈이", title:"미국의 역사", contents:"내용3"}
-    // ]
     const result = await Board.find()
     // 2. 꺼내온 결과 응답 주기
     res.send(result)
