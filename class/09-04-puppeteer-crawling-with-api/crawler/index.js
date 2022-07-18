@@ -36,6 +36,7 @@ async function startCrawling() {
         await stock.save()
 
 
+
             
     }
 
