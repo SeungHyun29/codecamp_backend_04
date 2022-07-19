@@ -1,11 +1,10 @@
 {
-  "name": "09-03-puppeteer-iframe",
+  "name": "11-03-express",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "mongoose": "^6.4.4",
-    "puppeteer": "^15.4.0"
+    "express": "^4.18.1"
   }
 }
