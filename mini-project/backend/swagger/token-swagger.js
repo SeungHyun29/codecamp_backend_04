@@ -13,7 +13,7 @@
  *             properties:
  *                          phone:
  *                              type: string
- *                              example: 유저 전화번호
+ *                              example: "01065808895"
  *     responses:
  *       200:
  *         description: 성공
@@ -43,10 +43,10 @@
  *             properties:
  *                          phone:
  *                              type: string
- *                              example: 유저 전화번호
+ *                              example: "01065808895"
  *                          token:
  *                              type: string
- *                              example: 생성된 토큰 번호
+ *                              example: 993842
  *     responses:
  *       200:
  *         description: 성공

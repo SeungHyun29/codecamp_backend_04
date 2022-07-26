@@ -5,7 +5,10 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "mongoose": "^6.4.4",
+<<<<<<< HEAD
+    "mongoose": "^6.4.5",
+=======
+>>>>>>> parent of 8671e25 (11일차)
     "puppeteer": "^15.4.0"
   }
 }

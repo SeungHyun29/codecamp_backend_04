@@ -49,22 +49,22 @@
  *             properties:
  *                          name:
  *                              type: string
- *                              example: string
+ *                              example: 정승현
  *                          email:
  *                              type: string
- *                              example: string
+ *                              example: dmseka08@gmail.com
  *                          personal:
  *                              type: string
- *                              example: string
+ *                              example: "010829-1234567"
  *                          prefer:
  *                              type: string
- *                              example: string
+ *                              example: http://naver.com
  *                          pwd:
  *                              type: string
- *                              example: string
+ *                              example: 1234
  *                          phone:
  *                              type: string
- *                              example: string
+ *                              example: "01065808895"
  *     responses:
  *       200:
  *         description: 성공

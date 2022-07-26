@@ -15,7 +15,6 @@ async function startCrawling() {
     await page.waitForTimeout(1000) //html 코드가 페이지에 저장됨
 
     for(let i = 1; i<=30; i++) {
-        await page.waitForTimeout(3000)
         const img = await page.$eval(
             `#container > div.content > div.product_result_wrap.product_result_wrap01 > div > dl > dd:nth-child(2) > div.product_list > dl > dd:nth-child(16) > ul > li:nth-child(${i}) > dl > dt > a > img`, 
             (img) => img.src
@@ -33,6 +32,7 @@ async function startCrawling() {
             img: img,
             name: name
         })
+        console.log (starbucks)
         await starbucks.save()
 
 
