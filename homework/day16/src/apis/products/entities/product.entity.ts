@@ -24,7 +24,7 @@ export class Product {
   price: number;
 
   @Column()
-  exp_detail: Date;
+  expDetail: Date;
 
   @ManyToOne(() => ProductSubCategory)
   productSubCategory: ProductSubCategory;
