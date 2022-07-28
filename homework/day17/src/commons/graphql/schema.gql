@@ -35,7 +35,7 @@ type Product {
   id: String!
   name: String!
   price: Int!
-  expDetail: String!
+  expDetail: String
   isSoldout: Boolean!
   productSubCategory: ProductSubCategory!
   productDetail: ProductDetail!
@@ -62,7 +62,7 @@ input createBoardInput {
 
 input CreateProductInput {
   name: String!
-  expDetail: String!
+  expDetail: String
   price: Int!
 }
 

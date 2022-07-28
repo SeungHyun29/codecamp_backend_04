@@ -20,7 +20,7 @@ export class Product {
   @Field(() => String)
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   @Field(() => String)
   name: string;
 
@@ -28,8 +28,8 @@ export class Product {
   @Field(() => Int)
   price: number;
 
-  @Column()
-  @Field(() => String)
+  @Column({ nullable: true })
+  @Field(() => String, { nullable: true })
   expDetail: string;
 
   @Column({ default: false })

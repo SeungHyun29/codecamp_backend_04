@@ -9,9 +9,7 @@ import { ProductModule } from './apis/products/products.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot(),
     BoardsModule,
     ProductCategoryModule,
     ProductModule,
@@ -29,6 +27,7 @@ import { ProductModule } from './apis/products/products.module';
       entities: [__dirname + '/apis/**/*.entity.*'], // 모델
       synchronize: true,
       logging: true,
+      retryAttempts: 30,
     }),
   ],
 })

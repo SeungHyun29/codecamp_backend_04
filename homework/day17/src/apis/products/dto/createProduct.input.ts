@@ -6,7 +6,7 @@ export class CreateProductInput {
   @Field(() => String)
   name: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   expDetail: string;
 
   @Min(0)
