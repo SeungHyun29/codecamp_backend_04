@@ -16,14 +16,14 @@ export class ProductService {
 
   findAll() {
     return this.productRepository.find({
-      relations: ['productSaleslocation', 'productCategory'],
+      relations: ['productSaleslocation'],
     });
   }
 
   findOne({ productId }) {
     return this.productRepository.findOne({
       where: { id: productId },
-      relations: ['productSaleslocation', 'productCategory'],
+      relations: ['productSaleslocation'],
     });
   }
 
@@ -39,7 +39,7 @@ export class ProductService {
     // price: createProductInput.price,
 
     // 2. 상품과 거래위치를 같이 등록하는 경우
-    const { productSaleslocation, productCategoryId, ...product } =
+    const { productSaleslocation, ...product } =
       createProductInput;
 
     console.log(product);
@@ -52,7 +52,6 @@ export class ProductService {
     const result2 = await this.productRepository.save({
       ...product,
       productSaleslocation: result, // result 통째로 넣기 vs id만 넣기
-      productCategory: { id: productCategoryId },
     });
 
     console.log(result2);
