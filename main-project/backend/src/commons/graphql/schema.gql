@@ -1,0 +1,102 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ProductDetail {
+  id: String!
+  content: String!
+}
+
+type ProductMainCategory {
+  id: String!
+  name: String!
+}
+
+type ProductSubCategory {
+  id: String!
+  name: String!
+  productMainCategory: ProductMainCategory!
+}
+
+type Product {
+  id: String!
+  name: String!
+  price: Int!
+  expDetail: String
+  isSoldout: Boolean!
+  productSubCategory: ProductSubCategory!
+  productDetail: ProductDetail!
+  hamsters: [Hamster!]!
+}
+
+type Hamster {
+  id: String!
+  name: String!
+  products: [Product!]!
+}
+
+type User {
+  id: String!
+  email: String!
+  name: String!
+  phonenumber: String!
+  signupDate: DateTime!
+  deletedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  fetchProducts: [Product!]!
+  fetchProduct(productId: String!): Product!
+  fetchWithDeleted: [Product!]!
+  fetchUser: String!
+  fetchUsers: [User!]!
+  fetchLoginUser(userId: String!): User!
+  fetchUserWithDeleted: [User!]!
+}
+
+type Mutation {
+  login(email: String!, password: String!): String!
+  restoreAccessToken: String!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(productId: String!, updateProductInput: UpdateProductInput!): Product!
+  deleteProduct(productId: String!): Boolean!
+  restoreProduct(productId: String!): Boolean!
+  createUser(email: String!, password: String!, name: String!, phonenumber: String!): User!
+  updateLoginUser(userId: String!, email: String!, password: String!, updateUserInput: UpdateUserInput!): User!
+  deleteLoginUser(userId: String!): Boolean!
+  restoreUser(userId: String!): Boolean!
+}
+
+input CreateProductInput {
+  name: String!
+  expDetail: String
+  price: Int!
+  productDetail: ProductDetailInput!
+  productSubCategoryId: String!
+  hamsters: [String!]!
+}
+
+input ProductDetailInput {
+  content: String!
+}
+
+input UpdateProductInput {
+  name: String
+  expDetail: String
+  price: Int
+  productDetail: ProductDetailInput
+  productSubCategoryId: String
+  hamsters: [String!]
+}
+
+input UpdateUserInput {
+  email: String!
+  password: String!
+  name: String!
+  phonenumber: String!
+}
