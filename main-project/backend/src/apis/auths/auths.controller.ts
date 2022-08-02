@@ -1,23 +1,13 @@
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
-import { UserService } from '../users/users.service';
+import { IOAuthUser } from 'src/commons/type/context';
 import { AuthsService } from './auths.service';
-
-interface IOAuthUser {
-  user: {
-    email: string;
-    hashedPassword: string;
-    name: string;
-    phonenumber: string;
-  };
-}
 
 @Controller()
 export class AuthsController {
   constructor(
-    private readonly usersService: UserService, //
-    private readonly authsService: AuthsService,
+    private readonly authsService: AuthsService, //
   ) {}
   @Get('/login/google')
   @UseGuards(AuthGuard('google'))
@@ -25,25 +15,24 @@ export class AuthsController {
     @Req() req: Request & IOAuthUser, //
     @Res() res: Response,
   ) {
-    // 1. 가입 확인
-    let user = await this.usersService.findOneUser({ email: req.user.email });
+    this.authsService.socialLogin(req, res);
+  }
 
-    // 2. 회원가입
-    if (!user) {
-      user = await this.usersService.create({
-        ...req.user,
+  @UseGuards(AuthGuard('kakao'))
+  @Get('/login/kakao')
+  async loginKakao(
+    @Req() req: Request & IOAuthUser, //
+    @Res() res: Response,
+  ) {
+    this.authsService.socialLogin(req, res);
+  }
 
-        // email: req.user.email,
-        // hashedPassword: req.user.hashedpassword, // 어차피 못 써서 아무거나 보냄
-        // name: req.user.name,
-        // age: req.user.age,
-      });
-    }
-
-    // 3. 로그인 (accessToken 만들어서 프론트엔드 주기)
-    this.authsService.setRefreshToken({ user, res });
-    res.redirect(
-      'http://localhost:5500/main-project/frontend/login/index.html',
-    );
+  @UseGuards(AuthGuard('naver'))
+  @Get('/login/naver')
+  async loginNaver(
+    @Req() req: Request & IOAuthUser, //
+    @Res() res: Response,
+  ) {
+    this.authsService.socialLogin(req, res);
   }
 }

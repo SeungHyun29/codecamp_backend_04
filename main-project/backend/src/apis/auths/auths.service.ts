@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UserService } from '../users/users.service';
 
 @Injectable()
 export class AuthsService {
   constructor(
     private readonly jwtService: JwtService, //
+    private readonly usersService: UserService,
   ) {}
 
   setRefreshToken({ user, res }) {
@@ -14,7 +16,7 @@ export class AuthsService {
     );
 
     // 개발 환경
-    res.setHeader('Set-Cookie', `refreshToken=${refreshToken}`);
+    res.setHeader('Set-Cookie', `refreshToken=${refreshToken}; path=/;`);
 
     // 배포 환경
     // res.setHeader(
@@ -27,7 +29,22 @@ export class AuthsService {
   getAccessToken({ user }) {
     return this.jwtService.sign(
       { email: user.email, sub: user.id }, //
-      { secret: 'myAccessKey', expiresIn: '20s' },
+      { secret: 'myAccessKey', expiresIn: '15s' },
+    );
+  }
+
+  async socialLogin(req: any, res: any) {
+    let user = await this.usersService.findOneUser({ email: req.user.email });
+
+    if (!user) {
+      user = await this.usersService.create({
+        ...req.user,
+      });
+    }
+
+    this.setRefreshToken({ user, res });
+    res.redirect(
+      'http://localhost:5500/main-project/frontend/login/index.html',
     );
   }
 }
