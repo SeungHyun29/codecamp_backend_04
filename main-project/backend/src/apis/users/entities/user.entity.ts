@@ -33,6 +33,10 @@ export class User {
   @Field(() => Date)
   signupDate: Date;
 
+  @Column({ default: 0 })
+  @Field(() => Int)
+  point: number;
+
   @DeleteDateColumn({ nullable: true })
   @Field(() => Date, { nullable: true })
   deletedAt: Date;

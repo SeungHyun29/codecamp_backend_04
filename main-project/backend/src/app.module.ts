@@ -6,15 +6,19 @@ import { ProductModule } from './apis/products/products.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './apis/users/users.module';
 import { AuthsModule } from './apis/auths/auths.module';
+import { PaymentsModule } from './apis/payments/payments.module';
+import { OrdersModule } from './apis/orders/orders.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    OrdersModule,
     AuthsModule,
     ProductModule,
     UserModule,
+    PaymentsModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/commons/graphql/schema.gql',

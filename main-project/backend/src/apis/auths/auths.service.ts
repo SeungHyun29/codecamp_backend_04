@@ -29,7 +29,7 @@ export class AuthsService {
   getAccessToken({ user }) {
     return this.jwtService.sign(
       { email: user.email, sub: user.id }, //
-      { secret: 'myAccessKey', expiresIn: '15s' },
+      { secret: 'myAccessKey', expiresIn: '1h' },
     );
   }
 
