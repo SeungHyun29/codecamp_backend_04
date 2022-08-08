@@ -46,3 +46,91 @@ mutation {
     phonenumber
   }
 }
+
+=======================================================
+createOrder 작성
+
+mutation {
+  createOrder(createOrderInput: {
+    cs:"배송 중",
+    quantity: 2,
+    orderNumber: "OD122",
+    productId: "c46cfbf3-2a21-49c9-ac0a-83009e5861a3",
+    userId: "8ce8836a-cc9b-4b28-bbb2-bb6306c0c285"
+  }) {
+    cs
+    quantity
+    orderDate
+    orderNumber
+  }
+}
+
+=======================================================
+createCancel 작성
+
+mutation {
+  createCancel(
+    impUid: "imp_263220864489",
+    amount: 100,
+    user: "8ce8836a-cc9b-4b28-bbb2-bb6306c0c285"
+  ) {
+    impUid
+  }
+}
+
+=======================================================
+createPayment 작성
+
+mutation {
+  createPayment(
+    impUid: "imp_929760002368",
+    amount: 100
+  ) {
+    impUid
+  }
+}
+
+=======================================================
+createProduct 작성
+
+mutation{
+  createProduct(createProductInput: {
+    name: "햄스터 피스트",
+    expDetail: "2022-12-23",
+    price: 2300,
+    productDetail: {content: "햄스터 전용 사료"},
+    productSubCategoryId: "fcf4e10d-163f-11ed-b5d8-0242ac150002",
+    hamsters: ["골든햄스터"]
+  }) {
+    id
+    name
+    expDetail
+    price
+    isSoldout
+  }
+}
+
+=======================================================
+fetchProducts 작성
+
+query{
+  fetchProducts
+  {
+    id
+    name
+    price
+    expDetail
+    isSoldout
+    productSubCategory {
+      id
+      name
+    }
+    productDetail {
+      content
+    }
+    hamsters {
+      id
+      name
+    }
+  }
+}

@@ -84,7 +84,7 @@ type Query {
 }
 
 type Mutation {
-  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createOrder(createOrderInput: CreateOrderInput!, impUid: String!, paymentId: String!): Order!
   login(email: String!, password: String!): String!
   restoreAccessToken: String!
   createProduct(createProductInput: CreateProductInput!): Product!
@@ -104,6 +104,7 @@ input CreateOrderInput {
   quantity: Int!
   orderNumber: String!
   productId: String!
+  userId: String!
 }
 
 input CreateProductInput {

@@ -15,4 +15,7 @@ export class CreateOrderInput {
 
   @Field(() => String)
   productId: string;
+
+  @Field(() => String)
+  userId: string;
 }
