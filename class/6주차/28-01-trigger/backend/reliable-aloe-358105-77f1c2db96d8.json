@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "reliable-aloe-358105",
+  "private_key_id": "77f1c2db96d8702b2c920c1323976cee12175a13",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCl/lyES6H5OT3n\nH1oLPGFkNlzWhEzX9Vk2pjWHyXEnrbvn4xr1BaO85s0paeVvX1QKzROaBh7MFrRv\nergwhagjVMoy2KjfzHYj6mjbR/NTYm8vzoheO/gv02eMcQIMeqqdzuLCMboRbzzy\ntOcpo2n1NoVz9sdoSCRreQR2f3keWKqqBWp2tx6P3IgmwCS0i2doi543V80ySFEy\nc9JSZsGYJHnvTLVjBOBFZMDWq2GV/ijlzJ/uAuRQS0jZYiReeEo3JV+uXPM6agOU\ne+WjgIN5pTG70NI2+dEV3vRJWKitawEzgTh3ejsvyP5q0dMR32Q/YCQHaq0/6ag7\n0Ef0k2xdAgMBAAECggEAEPNvNjFVCpLOX/5DHzecyHOGun9LK5iJ8js55zJqhD9J\nG46FD7VyOZWmKM8AF4X4GpxDnqx2U6gT5/hzu7zCZU1A0r1uTWBfRh6nc5Ee54p7\nSToBkgH0v8mKXvyhVW3nY3Mfk+4pDqO56R0RKB7gcKKPMT7nsR4A3hq/Gmy9DRyd\nczC51tOZXmioahKciufkOAhSy4Noy/6E/J8KsrwtRi3WPNXfJdGvnPgSk6Edxibu\nhfwYvX8usiRxKZeCbDxk1/Kb+5H9kNQJ21N11v3ZEYeDtU9mUsIapBzJl4RMUQPi\n6V7al8SOJkTXdyCC7K4UhCVm4krWEHBgOjQR4oqu7wKBgQDoxbWMd+CmMzqmJgBl\nieHWy9S4TsZThKCAvAUGqUFrGdAYMbjllnkwP3k+pywf1YjSjhm5YNSKdXvjYNBd\ncwcvsNC51OL1zPipDi/KtlyD3W3E+w/yEVbrlpJ+vIjDmLNsCYAu1m59zptLDl7A\n2k1x/xOdpcxKqOu2/K/yr9CKLwKBgQC2jsFSIDb9tQzhOqRfiVtuTaCVs2P2hEYt\naLfrtILrpIUPdFIxAjM7otwhK9sVe/Xu2wgd771d9FGc5YEAyQWwiP2vYu9v041K\nGcPOybs+YtXuW0462uUnA6cM+iiz5XME6CS6WP4zqSsvqVYhuIko9jBybPOxKuUN\noFnXW84rMwKBgQCxDyrw5YLpiVBUb9WfZwl1tOhjJfCwONNJ+TstfPO4/xKORMwr\nP5GBhNa6NLlYoboIx3SD0Ub65zDMnakBXG0b9rhekrPtWvPOzG7IGH05BObpjjvr\n2wqt+4QFiW3SssXQKU3q0suLQOxZZF3o/mUokGmgYiyKogFi2MURqnDLmwKBgQCu\nCKd5cGacNNZDfREoVpzIKc7WB79bSjxQm80CMgLBPATxd7XHLM7EonxyTwm7kIIi\no8I4L816XSjUhuIVao42/lHBunKCS84c/zTw1NXhIn3JjlekufrM16mQMIdPAIVG\n/zvMPnyPqU0XUbpfyTlQyGnlG8KxejAEboJXURjZiwKBgQC0GfesKFJO0pKj08S+\nefuO4gbDs9/rPbrBHF/N/0EQArQ6g1wGQ6mBItaDY5E6ScJxICH25vudh14HuwOV\nOIM5f6zdnFCE0Cmd8Av5NeJdWfWWsfILRJFK/8TnBsdLbGd9g8Fc3H8+DQdYnN1B\nT0pXu8uauqCHlm8Bn6yQ6VIz+g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "hamzzi-bigquery@reliable-aloe-358105.iam.gserviceaccount.com",
+  "client_id": "111068968961368325991",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/hamzzi-bigquery%40reliable-aloe-358105.iam.gserviceaccount.com"
+}

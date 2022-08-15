@@ -134,3 +134,17 @@ query{
     }
   }
 }
+
+=======================================================
+updateProduct 작성
+
+mutation{
+  updateProduct(
+    productId: "cbc45770-d1bf-407f-86c9-d88e9af7dc61",
+    updateProductInput: {
+      price: 2300,
+      imageUrl: ["jkkjhlkj"],
+    }) {
+    id
+  }
+}

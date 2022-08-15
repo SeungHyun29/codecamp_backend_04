@@ -1,5 +1,12 @@
+import { Field } from '@nestjs/graphql';
 import { Product } from 'src/apis/products/entities/product.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class ProductImage {
@@ -9,9 +16,10 @@ export class ProductImage {
   @Column()
   url: string;
 
-  @Column()
-  isMain: boolean;
-
-  @ManyToOne(() => Product)
+  @ManyToOne(() => Product, (product) => product.productImage)
+  @Field(() => Product)
   product: Product;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 }

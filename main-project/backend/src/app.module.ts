@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,6 +8,9 @@ import { UserModule } from './apis/users/users.module';
 import { AuthsModule } from './apis/auths/auths.module';
 import { PaymentsModule } from './apis/payments/payments.module';
 import { OrdersModule } from './apis/orders/orders.module';
+import { FilesModule } from './apis/files/file.module';
+import { RedisClientOptions } from 'redis';
+import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
   imports: [
@@ -19,6 +22,7 @@ import { OrdersModule } from './apis/orders/orders.module';
     ProductModule,
     UserModule,
     PaymentsModule,
+    FilesModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/commons/graphql/schema.gql',
@@ -34,6 +38,11 @@ import { OrdersModule } from './apis/orders/orders.module';
       entities: [__dirname + '/apis/**/*.entity.*'], // 모델
       synchronize: true,
       logging: true,
+    }),
+    CacheModule.register<RedisClientOptions>({
+      store: redisStore,
+      url: 'redis://my-redis:6379',
+      isGlobal: true,
     }),
   ],
 })

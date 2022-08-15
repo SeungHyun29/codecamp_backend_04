@@ -1,16 +1,30 @@
-import { UnprocessableEntityException, UseGuards } from '@nestjs/common';
+import {
+  CACHE_MANAGER,
+  Inject,
+  UnauthorizedException,
+  UnprocessableEntityException,
+  UseGuards,
+} from '@nestjs/common';
 import { Args, Mutation, Resolver, Context } from '@nestjs/graphql';
 import { UserService } from '../users/users.service';
 import { AuthsService } from './auths.service';
 import * as bcrypt from 'bcrypt';
 import { IContext } from 'src/commons/type/context';
-import { GqlAuthResfreshGuard } from 'src/commons/auth/gql-auth.guard';
+import {
+  GqlAuthAccessGuard,
+  GqlAuthResfreshGuard,
+} from 'src/commons/auth/gql-auth.guard';
+import { Cache } from 'cache-manager';
+import * as jwt from 'jsonwebtoken';
 
 @Resolver()
 export class AuthsResolver {
   constructor(
     private readonly userService: UserService,
     private readonly authsService: AuthsService, //
+
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache,
   ) {}
 
   @Mutation(() => String)
@@ -36,6 +50,46 @@ export class AuthsResolver {
     // 5. 일치하는 유저가 있고 비밀번호도 맞았다면
     // => accessToken(= JWT)을 만들어서 브라우저에 전달
     return this.authsService.getAccessToken({ user });
+  }
+
+  @UseGuards(GqlAuthAccessGuard)
+  @Mutation(() => String)
+  async logout(
+    @Context() context: IContext, //
+  ) {
+    try {
+      // 1. 토큰 가져오기
+      const accessToken = context.req.headers['authorization'].replace(
+        'Bearer ',
+        '',
+      );
+      const refreshToken = context.req.headers['cookie'].replace(
+        'refreshToken=',
+        '',
+      );
+
+      console.log(accessToken, refreshToken);
+      // 2. 토큰 검증하기
+      jwt.verify(accessToken, 'myAccessKey');
+      jwt.verify(refreshToken, 'myRefreshKey');
+
+      // 3. redis에 로그아웃 blacklist 저장하기
+      await this.cacheManager.set(
+        `accessToken:${accessToken}`, //
+        'accessToken',
+        { ttl: 3600 },
+      );
+
+      await this.cacheManager.set(
+        `refreshToken:${refreshToken}`, //
+        'refreshToken',
+        { ttl: 1209600 },
+      );
+
+      return '로그아웃에 성공했습니다.';
+    } catch (error) {
+      if (error) throw new UnauthorizedException(error.response);
+    }
   }
 
   @UseGuards(GqlAuthResfreshGuard)

@@ -14,6 +14,9 @@ export class CreateProductInput {
   @Field(() => Int)
   price: number;
 
+  @Field(() => [String], { nullable: true })
+  imageUrl: string[];
+
   @Field(() => ProductDetailInput)
   productDetail: ProductDetailInput;
 

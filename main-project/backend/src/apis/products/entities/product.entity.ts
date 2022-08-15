@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Hamster } from 'src/apis/Hamsters/entites/Hamster.entity';
 import { ProductDetail } from 'src/apis/productsDetails/entities/productDetail.entity';
+import { ProductImage } from 'src/apis/productsImages/entites/productImage.entity';
 import { ProductSubCategory } from 'src/apis/productsSubCategories/entites/productSubCategory.entity';
 import {
   Column,
@@ -10,6 +11,7 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -53,4 +55,8 @@ export class Product {
   @ManyToMany(() => Hamster, (hamsters) => hamsters.products)
   @Field(() => [Hamster])
   hamsters: Hamster[];
+
+  @OneToMany(() => ProductImage, (productImage) => productImage.product)
+  @Field(() => [String])
+  productImage: string[];
 }

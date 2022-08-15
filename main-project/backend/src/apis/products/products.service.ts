@@ -1,8 +1,10 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { resolve } from 'path';
 import { Repository } from 'typeorm';
 import { Hamster } from '../Hamsters/entites/Hamster.entity';
 import { ProductDetail } from '../productsDetails/entities/productDetail.entity';
+import { ProductImage } from '../productsImages/entites/productImage.entity';
 import { Product } from './entities/product.entity';
 
 @Injectable()
@@ -16,6 +18,9 @@ export class ProductService {
 
     @InjectRepository(Hamster)
     private readonly hamsterRepository: Repository<Hamster>,
+
+    @InjectRepository(ProductImage)
+    private readonly productImageRepository: Repository<ProductImage>,
   ) {}
 
   async findAll() {
@@ -39,8 +44,13 @@ export class ProductService {
   }
 
   async create({ createProductInput }) {
-    const { productDetail, productSubCategoryId, hamsters, ...product } =
-      createProductInput;
+    const {
+      imageUrl,
+      productDetail,
+      productSubCategoryId,
+      hamsters,
+      ...product
+    } = createProductInput;
 
     console.log(product);
 
@@ -77,14 +87,66 @@ export class ProductService {
       hamsters: hamsterresult,
     });
 
+    await Promise.all(
+      imageUrl.map(
+        (el) =>
+          new Promise((resolve, reject) => {
+            this.productImageRepository.save({
+              url: el,
+              product: { id: result2.id },
+            });
+            resolve('이미지 저장 완료');
+            reject('이미지 저장 실패');
+          }),
+      ),
+    );
+
+    await this.productImageRepository.save({
+      url: imageUrl,
+      product: { id: result2.id },
+    });
+
     return result2;
   }
 
   async update({ productId, updateProductInput }) {
+    const { imageUrl, ...product } = updateProductInput;
+
     // 수정 후 결과값까지 받을 때 사용
     const myproduct = await this.productRepository.findOne({
       where: { id: productId },
     });
+
+    if (!myproduct) {
+      throw new UnprocessableEntityException('상품이 존재하지 않습니다.');
+    }
+
+    const _imageUrl = await this.productImageRepository.find({
+      where: { id: product.id },
+    });
+
+    await Promise.all(
+      _imageUrl.map(
+        (el) =>
+          new Promise((resolve) => {
+            this.productImageRepository.softDelete({ id: el.id });
+            resolve('이미지 삭제 완료');
+          }),
+      ),
+    );
+
+    await Promise.all(
+      _imageUrl.map(
+        (el) =>
+          new Promise((resolve) => {
+            this.productImageRepository.save({
+              url: el.url,
+              product: { id: myproduct.id },
+            });
+            resolve('이미지 저장 완료');
+          }),
+      ),
+    );
 
     const result = this.productRepository.save({
       ...myproduct,
@@ -92,17 +154,6 @@ export class ProductService {
       ...updateProductInput,
     });
     return result;
-
-    // 수정할 때만 쓰는 로직
-    // this.productRepository.update(
-    //   { id: productId },
-    //   {
-    //     ...updateProductInput,
-    //     // name: updateProductInput.name,
-    //     // description: updateProductInput.description,
-    //     // price: updateProductInput.price,
-    //   },
-    // );
   }
 
   async delete({ productId }) {
@@ -121,11 +172,5 @@ export class ProductService {
     });
     if (product.isSoldout)
       throw new UnprocessableEntityException('이미 판매 완료된 상품입니다.');
-    // if (product.isSoldout) {
-    //   throw new HttpException(
-    //     '이미 판매 완료된 상품입니다.',
-    //     HttpStatus.UNPROCESSABLE_ENTITY,
-    //   );
-    // }
   }
 }

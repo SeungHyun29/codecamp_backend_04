@@ -23,6 +23,7 @@ export class UserResolver {
     return 'fetchUser가 실행되었습니다.';
   }
 
+  @UseGuards(GqlAuthAccessGuard)
   @Query(() => [User])
   fetchUsers() {
     return this.userService.findAll();
