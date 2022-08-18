@@ -12,7 +12,7 @@ export class FileService {
     const bucket = 'hamzzi-storage';
     const storage = new Storage({
       projectId: process.env.PROJECT_ID,
-      keyFilename: 'reliable-aloe-358105-eda381f3a59d.json',
+      keyFilename: 'reliable-aloe-358105-3a9820e41e50.json',
     }).bucket(bucket);
 
     const results = await Promise.all(

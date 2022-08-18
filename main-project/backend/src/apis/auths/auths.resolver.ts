@@ -68,7 +68,6 @@ export class AuthsResolver {
         '',
       );
 
-      console.log(accessToken, refreshToken);
       // 2. 토큰 검증하기
       jwt.verify(accessToken, 'myAccessKey');
       jwt.verify(refreshToken, 'myRefreshKey');

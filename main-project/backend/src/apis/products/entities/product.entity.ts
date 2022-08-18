@@ -14,6 +14,7 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -41,6 +42,9 @@ export class Product {
 
   @DeleteDateColumn()
   deletedAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @ManyToOne(() => ProductSubCategory)
   @Field(() => ProductSubCategory)

@@ -1,6 +1,5 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { resolve } from 'path';
 import { Repository } from 'typeorm';
 import { Hamster } from '../Hamsters/entites/Hamster.entity';
 import { ProductDetail } from '../productsDetails/entities/productDetail.entity';
