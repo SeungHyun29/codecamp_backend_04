@@ -9,7 +9,6 @@ steps:
   #2단계 => docker-compose -f docker-compose.prod.yaml push
   - name: docker/compose:1.29.0
     args:
-      - docker-compose
       - -f
       - class/7주차/deploy-with-docker/backend/docker-compose.prod.yaml
       - push
