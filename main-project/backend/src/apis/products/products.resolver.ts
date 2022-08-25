@@ -38,7 +38,11 @@ export class ProductResolver {
       const result = await this.elasticsearchService.search({
         index: 'search-product', // 인덱스는 컬렉션명
         query: {
-          term: { name: search },
+          bool: {
+            should: [{ prefix: { name: search.toLowerCase() } }],
+          },
+
+          // term: { name: search.toLowerCase() },
         },
       });
 

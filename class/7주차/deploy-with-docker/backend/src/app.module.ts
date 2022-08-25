@@ -11,6 +11,7 @@ import { AuthsModule } from './apis/auths/auths.module';
 import { PointsTransactionsModule } from './apis/pointsTransactions/pointsTrnasactions.module';
 import { PaymentMoudle } from './apis/payment/payment.module';
 import { FilesModule } from './apis/files/file.module';
+import { AppController } from './commons/app.controller';
 
 @Module({
   imports: [
@@ -42,5 +43,6 @@ import { FilesModule } from './apis/files/file.module';
       logging: true,
     }),
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
